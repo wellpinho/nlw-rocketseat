@@ -18,7 +18,7 @@ function Landing() {
 
         <div className="location">
           <strong>Rio de Janeiro </strong>
-          <span>RJ</span>
+          <span>RJ Capital</span>
         </div>
 
           <Link to="/app" className="enter-app">
