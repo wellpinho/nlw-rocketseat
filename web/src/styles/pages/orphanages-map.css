@@ -62,3 +62,13 @@
   background-color: #96feff;
   transition: 600ms;
 }
+
+footer small{
+  display: flex;
+  align-items: center;
+}
+
+footer small a {
+  text-decoration: none;
+  color: #ffd666;
+}
