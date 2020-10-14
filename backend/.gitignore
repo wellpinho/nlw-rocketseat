@@ -22,3 +22,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+uploads/.png
+uploads/.jpeg
+uploads/.svg
+uploads/.jpg
