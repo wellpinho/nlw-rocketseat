@@ -1,34 +1,31 @@
 import { Request, Response } from 'express'
 import { getRepository } from 'typeorm'
 import Orphanage from './../models/Orphanage'
+import orphanageView from './../views/Orphanages_views'
 
 // padrão index, show, create, update, delete
 export default {
   async index(req: Request, res: Response) {
     const orphanageRespository = getRepository(Orphanage)
-    const orphanages = await orphanageRespository.find()
+    const orphanages = await orphanageRespository.find({
+      relations: ['images']
+    })
 
-    return res.json(orphanages)
+    return res.json(orphanageView.renderMany(orphanages))
   },
 
   async show(req: Request, res:Response) {
     const { id } = req.params
     const orphanageRespository = getRepository(Orphanage)
-    await orphanageRespository.findOneOrFail(id)
-      .then(list => {
-        return res.json(list)
-      })
-      .catch(err => {
-        return res.status(400).json({
-          message: 'Nunhum orfanato encontrado',
-          error: err
-        })
-      })
+    const orphanage = await orphanageRespository.findOneOrFail(id, {
+      relations: ['images']
+    })
+    return res.json(orphanageView.render(orphanage))
   },
 
   async create(req: Request, res: Response) {
       const {
-        name,
+        nme,
         latitude,
         longitude,
         about,
@@ -47,7 +44,7 @@ export default {
       })
     
       const orphanage = orphanageRespository.create({
-        name,
+        nme,
         latitude,
         longitude,
         about,
@@ -60,7 +57,8 @@ export default {
       await orphanageRespository.save(orphanage)
     
       return res.status(201).json({
-        message: 'Novo Orphanato criado com sucesso'
+        message: 'Novo Orphanato criado com sucesso',
+        orphanage
       })
     }
   }
