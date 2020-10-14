@@ -1,13 +1,11 @@
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
-import { FiClock, FiInfo, FiArrowLeft } from "react-icons/fi";
+import { FiClock, FiInfo } from "react-icons/fi";
 import { Map, Marker, TileLayer } from "react-leaflet";
 
 import '../styles/pages/orphanage.css';
 import Sidebar from "./Sidebar";
 import mapIcon from "../utils/mapIcon";
-
-
 
 export default function Orphanage() {
 
@@ -61,7 +59,7 @@ export default function Orphanage() {
               </Map>
 
               <footer>
-                <a href="">Ver rotas no Google Maps</a>
+                <a href="#0">Ver rotas no Google Maps</a>
               </footer>
             </div>
 
